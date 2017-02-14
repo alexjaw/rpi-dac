@@ -27,8 +27,8 @@ static struct snd_soc_dai_driver pcm1794a_dai = {
 		.channels_min = 2,
 		.channels_max = 2,
 		.rates = SNDRV_PCM_RATE_8000_192000,
-		.formats =   SNDRV_PCM_FMTBIT_S16_LE
-			     | SNDRV_PCM_FMTBIT_S24_LE
+		.formats = SNDRV_PCM_FMTBIT_S16_LE |
+			   SNDRV_PCM_FMTBIT_S24_LE
 	},
 	.capture = {
 		.channels_min = 2,
@@ -53,12 +53,19 @@ static int pcm1794a_remove(struct platform_device *pdev)
 	return 0;
 }
 
+static const struct of_device_id pcm1794a_of_match[] = {
+	{ .compatible = "ti,pcm1794a", },
+	{ }
+};
+MODULE_DEVICE_TABLE(of, pcm1794a_of_match);
+
 static struct platform_driver pcm1794a_codec_driver = {
 	.probe 		= pcm1794a_probe,
 	.remove 	= pcm1794a_remove,
 	.driver		= {
 		.name	= "pcm1794a-codec",
 		.owner	= THIS_MODULE,
+		.of_match_table = of_match_ptr(pcm1794a_of_match),
 	},
 };
 
