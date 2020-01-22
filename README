@@ -1,0 +1,14 @@
+Use:
+- update code
+- run make
+- run ./cp_modules_to_destination.sh
+- add dtparam=rpi-dac to /boot/config.txt
+- restart rpi
+- run lsmod and make sure that it lists:
+    snd_soc_pcm1794a,snd_soc_bcm2835_i2s,snd_soc_rpi_simple_soundcard
+- make sure that aplay -l and arecord -l lists:
+    sndrpirpidac [snd_rpi_rpi_dac], device 0: RPi-DAC HiFi pcm1794a-hifi-0 []
+- try playback with:
+    mplayer http://ice2.somafm.com/groovesalad-128-mp3
+- try recording with (adjust parameters where needed):
+    arecord -D hw:0,0 -d 100 -f S16_LE -r 44100 -c2 tmp.wav
