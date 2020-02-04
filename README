@@ -1,8 +1,13 @@
 Use:
-- update code
+You need linux source, see https://github.com/notro/rpi-source/wiki
+- sudo apt-get install git bc bison flex libssl-dev
+- sudo chmod +x /usr/local/bin/rpi-source && /usr/local/bin/rpi-source -q --tag-update
+- run rpi-source
+When linux source is installed:
+- update code (if necessary)
 - run make
 - run ./cp_modules_to_destination.sh
-- add dtparam=rpi-dac to /boot/config.txt
+- add dtoverlay=rpi-dac to /boot/config.txt
 - restart rpi
 - run lsmod and make sure that it lists:
     snd_soc_pcm1794a,snd_soc_bcm2835_i2s,snd_soc_rpi_simple_soundcard
