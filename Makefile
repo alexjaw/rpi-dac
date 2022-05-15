@@ -1,12 +1,13 @@
 # These are our files. Modified to work with BAP clock arrangement.
-# These files are supposed to replace the corresponding files in:
-# /lib/modules/$(uname -r)/kernel/sound/soc/bcm/snd-soc-rpi-dac.ko
-# /lib/modules/$(uname -r)/kernel/sound/soc/codecs/snd-soc-pcm1794a.ko
-# load using modprobe
+# Load by adding dtparam=rpi-dac in /boot/config.txt
 # ref for working with several LKM:s
 # http://stackoverflow.com/questions/33718358/insmod-unknown-symbol-in-module
+#
+# Some history:
+# From start we used snd-soc-rpi-dac.c, however, it has been replaced
+# with snd-soc-rpi-simple-soundcard.c.
 
-SRCS   = snd-soc-pcm1794a.c snd-soc-rpi-dac.c
+SRCS   = snd-soc-pcm1794a.c snd-soc-rpi-simple-soundcard.c
 OBJS   = $(SRCS:.c=.o)
 
 obj-m += $(OBJS)

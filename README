@@ -1,0 +1,21 @@
+Use:
+You need linux source, see https://github.com/notro/rpi-source/wiki
+- sudo apt-get install git bc bison flex libssl-dev
+- sudo chmod +x /usr/local/bin/rpi-source && /usr/local/bin/rpi-source -q --tag-update
+- run rpi-source
+When linux source is installed:
+- update code (if necessary)
+- run make
+- run ./cp_modules_to_destination.sh
+- add dtoverlay=rpi-dac to /boot/config.txt
+- restart rpi
+- run lsmod and make sure that it lists:
+    snd_soc_pcm1794a,snd_soc_bcm2835_i2s,snd_soc_rpi_simple_soundcard
+- make sure that aplay -l and arecord -l lists:
+    (5.10.y) sndrpirpidac [snd_rpi_rpi_dac], device 0: RPi-DAC HiFi pcm1794a-codec-0 [RPi-DAC HiFi pcm1794a-codec-0]
+    (4.19.y) sndrpirpidac [snd_rpi_rpi_dac], device 0: RPi-DAC HiFi pcm1794a-hifi-0 []
+- try playback with:
+    aplay 
+    (might have issues) mplayer http://ice2.somafm.com/groovesalad-128-mp3
+- try recording with (adjust parameters where needed):
+    arecord -D hw:0,0 -d 100 -f S16_LE -r 44100 -c2 tmp.wav

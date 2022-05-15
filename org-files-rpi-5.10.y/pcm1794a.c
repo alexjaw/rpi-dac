@@ -30,14 +30,6 @@ static struct snd_soc_dai_driver pcm1794a_dai = {
 		.formats = SNDRV_PCM_FMTBIT_S16_LE |
 			   SNDRV_PCM_FMTBIT_S24_LE
 	},
-        .capture = {
-                .channels_min = 2,
-                .channels_max = 2,
-                .rates = SNDRV_PCM_RATE_8000_192000,
-                .formats = SNDRV_PCM_FMTBIT_S16_LE |
-                           SNDRV_PCM_FMTBIT_S24_LE
-        },
-
 };
 
 static struct snd_soc_component_driver soc_component_dev_pcm1794a;
